@@ -34,41 +34,52 @@
 ![alt text](https://github.com/Maksakov-AA/MIPT_DE_Final_Work/blob/main/images/pipeline_scheme.png?raw=true)
 
 ## Структура проекта с описанием скриптов
-### ml_pipeline_project/ - корневая директория
+### ml_pipeline_project/
+Корневая директория
 - README.md - описание
 
-### ml_pipeline_project/dags/ - директория для DAG файлов
+### ml_pipeline_project/dags/
+Директория для DAG файлов
 - pipeline_dag.py - DAG-файл для Apache Airflow
 
-### ml_pipeline_project/etl/ - директория для шагов обработки и моделирования
+### ml_pipeline_project/etl/
+Директория для шагов обработки и моделирования
 - load_data.py - загружает исходные данные из CSV-файлов. Делит на тренировочную и тестовую выборки, копирует их в папку
 - preprocessing.py - выполняет очистку, кодирование категориальных признаков и масштабирование числовых. Обрабатывает данные для последующего обучения модели
 - train_model.py - обучает модель (например, RandomForest или другую) на обработанных тренировочных данных и сохраняет результат в models/model.pkl
 - evaluate.py - выполняет прогноз на тестовых данных и рассчитывает метрики (accuracy, f1-score и др.). Сохраняет результат в results/metrics.json
 
-### ml_pipeline_project/scripts/ - директория для скриптов
+### ml_pipeline_project/scripts/
+Директория для скриптов
 - upload_to_drive.py - Скрипт, который загружает финальные результаты (metrics.json) на Google Drive с использованием сервисного аккаунта и credentials.json
 
-### ml_pipeline_project/data/ - директория для хранения оригинальных датасетов
+### ml_pipeline_project/data/
+Директория для хранения оригинальных датасетов
 - train.csv - тренировочная выборка
 - test.csv - тестовая выборка
 
-### ml_pipeline_project/data/processed/ - директория для хранения обработанных датасетов (после preprocessing.py)
+### ml_pipeline_project/data/processed/
+Директория для хранения обработанных датасетов (после preprocessing.py)
 - train.csv - обработанная тренировочная выборка
 - test.csv - обработанная тестовая выборка
 
-### ml_pipeline_project/models/ - директория для хранения моделей
+### ml_pipeline_project/models/
+Директория для хранения моделей
 - model.pkl - модель, обученная в train_model.py, готовая к использованию или деплою
 
-### ml_pipeline_project/results/ - итоговые файлы
+### ml_pipeline_project/results/
+Итоговые файлы
 - metrics.json - файл с метриками качества модели, сформированный в evaluate.py. Используется для отчётности или мониторинга
 
-### ml_pipeline_project/credentials/ - креды
+### ml_pipeline_project/credentials/
+Креды
 - credentials.json - ключ сервисного аккаунта Google. Используется в upload_to_drive.py для авторизации при загрузке файлов на Google Drive
 
-### ml_pipeline_project/logs/ - папка для логов, создаётся автоматически Airflow. Используется для хранения логов исполнения задач DAG
+### ml_pipeline_project/logs/
+Папка для логов, создаётся автоматически Airflow. Используется для хранения логов исполнения задач DAG
 
-### ml_pipeline_project/venv/ - виртуальное окружение Python с установленными зависимостями (pandas, scikit-learn, google-api-python-client и т. д.). Используется для изоляции среды.
+### ml_pipeline_project/venv/
+Виртуальное окружение Python с установленными зависимостями (pandas, scikit-learn, google-api-python-client и т. д.). Используется для изоляции среды.
 
 ## Оркестрация пайплайна с помощью Airflow
 ### Название DAG: ml_pipeline_dag
