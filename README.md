@@ -103,8 +103,8 @@ airflow scheduler
 - Реализовать CI/CD (например, через GitHub Actions)
 
 ## Скриншоты работы DAG
-![alt text]([http://url/to/img.png](https://github.com/Maksakov-AA/MIPT_DE_Final_Work/blob/main/images/AirFlow_DAG.png))
-![alt text]([http://url/to/img.png](https://github.com/Maksakov-AA/MIPT_DE_Final_Work/blob/main/images/AirFlow_DAG_2.png))
+![alt text](https://github.com/Maksakov-AA/MIPT_DE_Final_Work/blob/main/images/AirFlow_DAG.png?raw=true)
+![alt text](https://github.com/Maksakov-AA/MIPT_DE_Final_Work/blob/main/images/AirFlow_DAG_2.png?raw=true)
 
 ## Ссылки
 - http://194.87.252.54:8080/dags/ml_pipeline_dag/grid - Ссылка на AirFlow
