@@ -96,31 +96,92 @@
 load_data_task >> preprocess_data_task >> train_model_task >> evaluate_model_task >> upload_to_drive_task
 
 ## Инструкция по запуску
-1. Установка  зависимости:
+### 1. Установка  зависимости:
+Переход в директорию проекта и активация виртуального окружения
+```bash
+cd ~/ml_pipeline_project
+source venv/bin/activate
+```
 
+Установка зависимостей
+```bash
 pip install -r requirements.txt
+```
 
-Установите и настройте Airflow:
-
+### 2. Настройка Airflow
+Установка переменной окружения AIRFLOW_HOME:
+```bash
 export AIRFLOW_HOME=~/ml_pipeline_project/airflow
+```
+
+Инициализация базы данных Airflow:
+```bash
 airflow db init
+```
 
-Создайте пользователя (один раз):
-
+### 3. Создание пользователя Airflow
+Создание администратора:
+```bash
 airflow users create \
-    --username admin \
-    --firstname admin \
-    --lastname admin \
-    --role Admin \
-    --email admin@example.com \
-    --password admin
+  --username admin \
+  --firstname Admin \
+  --lastname User \
+  --role Admin \
+  --email admin@example.com \
+  --password admin
+```
 
-Запустите:
-
+### 4. Запуск Airflow
+Запуск web-сервера и планировщика (в отдельных терминалах или в tmux):
+```bash
 airflow webserver --port 8080
-airflow scheduler
+```
 
-Для ручного запуска:
+```bash
+airflow scheduler
+```
+
+### 5. Размещение DAG
+Файл pipeline_dag.py должен лежать по пути:
+```bash
+~/ml_pipeline_project/dags/pipeline_dag.py
+```
+
+Необходимо убедиться, что переменная AIRFLOW_HOME указывает на:
+```bash
+~/ml_pipeline_project/airflow
+```
+
+### 6. Проверка DAG
+Показать структуру DAG:
+```bash
+airflow dags show ml_pipeline_dag
+```
+
+Проверка импорта:
+```bash
+airflow dags list
+```
+
+### 7. Ручной запуск DAG
+Тест выполнения отдельной задачи (без запуска всего DAG):
+```bash
+airflow tasks test ml_pipeline_dag load_data 2025-06-17
+```
+Запуск всего DAG:
+ ```bash
+airflow dags trigger ml_pipeline_dag
+```
+
+### 8. Просмотр логов задачи
+ ```bash
+airflow tasks logs ml_pipeline_dag <task_id> <run_id>
+```
+
+### 9. Результаты
+- Модель сохраняется в: models/model.pkl
+- Метрики модели: results/metrics.json
+- Загружаются в Google Drive (папка определяется в upload_to_drive.py)
 
 ## Интеграция с Google Drive
 Файл upload_to_drive.py использует credentials/credentials.json, полученный через Google Cloud Console (OAuth сервисный аккаунт).
@@ -132,12 +193,12 @@ airflow scheduler
 - Airflow retries=2, retry_delay=timedelta(minutes=1) предусмотрены
 - При ошибке в одном шаге — DAG останавливается, но шаги изолированы логически
 
-## Потенциальные точки сбоя
+### Потенциальные точки сбоя
 - API Google может быть недоступен → предусмотрен retry
 - Невалидные данные → предусмотрены проверки на NaN, сохранение промежуточных файлов
 - Ошибки модели → try-except блок в train_model.py
 
-## Предложения по развитию
+### Предложения по развитию
 - Добавить Telegram-уведомления о статусе DAG
 - Добавить профилирование модели и логирование метрик в MLflow
 - Реализовать CI/CD (например, через GitHub Actions)
