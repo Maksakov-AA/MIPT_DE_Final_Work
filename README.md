@@ -28,7 +28,7 @@
 ## Схема пайплайна
 ![alt text](https://github.com/Maksakov-AA/MIPT_DE_Final_Work/blob/main/images/pipeline_scheme.png?raw=true)
 
-## Структура проекта с описанием скриптов 
+## Структура проекта с описанием скриптов
 ml_pipeline_project/ - корневая директория
 │
 ├── dags/ - директория для DAG файлов
