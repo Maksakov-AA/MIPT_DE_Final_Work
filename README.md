@@ -26,7 +26,7 @@
 Все шаги представлены в отдельных модулях Python и объединены в DAG Airflow с названием ml_pipeline_dag.
 
 ## Схема пайплайна
-![alt text]([http://url/to/img.png](https://github.com/Maksakov-AA/MIPT_DE_Final_Work/blob/main/images/pipeline_scheme.png))
+![alt text](https://github.com/Maksakov-AA/MIPT_DE_Final_Work/blob/main/images/pipeline_scheme.png?raw=true)
 
 ## Структура проекта с описанием скриптов 
 ml_pipeline_project/ - корневая директория
