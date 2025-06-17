@@ -30,6 +30,7 @@
 
 ## Структура проекта с описанием скриптов
 ml_pipeline_project/ - корневая директория
+- README.md - описание
 
 ml_pipeline_project/dags/ - директория для DAG файлов
 - pipeline_dag.py - DAG-файл для Apache Airflow
@@ -63,7 +64,6 @@ ml_pipeline_project/credentials/ - креды
 ml_pipeline_project/logs/ - папка для логов, создаётся автоматически Airflow. Используется для хранения логов исполнения задач DAG
 
 ml_pipeline_project/venv/ - виртуальное окружение Python с установленными зависимостями (pandas, scikit-learn, google-api-python-client и т. д.). Используется для изоляции среды.
-- README.md - описание
 
 ## Инструкция по запуску
 1. Установка  зависимости:
